@@ -1,5 +1,7 @@
 package projetPOO;
 
-public abstract class Shape {
-	
+import java.awt.*;
+
+public interface Shape {
+	public abstract Point getPosition();
 }
