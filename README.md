@@ -1,2 +1,2 @@
 # POO
-Object Oriented Programation project for universityu
+Object Oriented Programation project for university
