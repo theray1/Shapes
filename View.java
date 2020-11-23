@@ -5,6 +5,11 @@ import javax.swing.*;
 
 public class View extends JFrame{
 	
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public View(String title, int w, int h) {
 		super(title);
 		build(w, h);
