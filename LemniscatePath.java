@@ -2,7 +2,7 @@ package projetPOO;
 
 import java.awt.Point;
 
-public class LemniscatePathe implements Path {
+public class LemniscatePath implements Path {
 
 	@Override
 	public Point nextPoint() {

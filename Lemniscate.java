@@ -1,15 +1,10 @@
 package projetPOO;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Point;
 
 public class Lemniscate implements Shape, Drawable{
-
-	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public Point getPosition() {
@@ -37,6 +32,12 @@ public class Lemniscate implements Shape, Drawable{
 
 	@Override
 	public void setColor(Color newColor) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
 		
 	}

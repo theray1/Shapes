@@ -22,7 +22,7 @@ public class View extends JFrame{
 		setPreferredSize(new Dimension(w, h));
 		buildContentPane(); //TODO (contenu)
 		setLocationRelativeTo(null); //set la position de la fenetre au milieu de l'écran
-		setResizable(false); //la taille ne peut pas être modifiée
+		setResizable(true); //la taille ne peut pas être modifiée
 		pack(); // dimensionnement des composants (?);
 		
 	}
@@ -30,7 +30,7 @@ public class View extends JFrame{
 	private void buildContentPane() {
 		JLabel label = new JLabel("Welcome!", JLabel.CENTER);
 		getContentPane().setBackground(Color.GRAY);
-		getContentPane().add(label);
+		getContentPane().add(label, BorderLayout.WEST);
 		
 		JButton testButton = new JButton("This is not a button");
 		getContentPane().add(testButton, BorderLayout.EAST);
@@ -41,6 +41,11 @@ public class View extends JFrame{
 						}
 					}
 		);
+		
+		DrawingPanel redDisk = new DrawingPanel();
+		getContentPane().add(redDisk, BorderLayout.CENTER);
+		
+		
 	}
 	
 	private class EqListener implements ActionListener{
@@ -52,7 +57,7 @@ public class View extends JFrame{
 				System.out.println("how did i get here");
 			}
 			catch(Exception e) {
-				
+				System.out.println("what? how?");
 			}
 		}
 		

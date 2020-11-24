@@ -1,18 +1,13 @@
 package projetPOO;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Point;
 
 public class Square implements Shape, Drawable{
-	//@override
+	@Override
 	public Point getPosition() {
 		return new Point();
-	}
-
-	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -35,6 +30,12 @@ public class Square implements Shape, Drawable{
 
 	@Override
 	public void setColor(Color newColor) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
 		
 	}
