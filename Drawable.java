@@ -1,5 +1,5 @@
 package projetPOO;
 
 public interface Drawable {
-	public void draw();
+	public abstract void draw();
 }

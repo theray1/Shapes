@@ -3,15 +3,18 @@ package projetPOO;
 import java.awt.Color;
 import java.awt.Point;
 
-public class Circle implements Shape, Drawable{
-	public Point getPosition() {
-		return new Point();
-	}
+public class Lemniscate implements Shape, Drawable{
 
 	@Override
 	public void draw() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Point getPosition() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -37,4 +40,5 @@ public class Circle implements Shape, Drawable{
 		// TODO Auto-generated method stub
 		
 	}
+
 }
