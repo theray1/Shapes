@@ -1,6 +1,9 @@
 package projetPOO;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 public class View extends JFrame{
@@ -28,6 +31,31 @@ public class View extends JFrame{
 		JLabel label = new JLabel("Welcome!", JLabel.CENTER);
 		getContentPane().setBackground(Color.GRAY);
 		getContentPane().add(label);
+		
+		JButton testButton = new JButton("This is not a button");
+		getContentPane().add(testButton, BorderLayout.EAST);
+		testButton.addActionListener(
+					new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							System.out.println("wtf am i doing");
+						}
+					}
+		);
+	}
+	
+	private class EqListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent a) {
+			// TODO Auto-generated method stub
+			try {
+				System.out.println("how did i get here");
+			}
+			catch(Exception e) {
+				
+			}
+		}
+		
 	}
 	
 }
