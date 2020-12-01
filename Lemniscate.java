@@ -42,4 +42,10 @@ public class Lemniscate implements Shape, Drawable{
 		
 	}
 
+	@Override
+	public void moveTo(Point p) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

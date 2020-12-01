@@ -10,24 +10,71 @@ public class DrawingPanel extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Drawable> listOfShapes; 
+	private int indexOfSelectedShape;
+	private boolean reset;
+	
+	public ArrayList<Drawable> getListOfShapes(){
+		return this.listOfShapes;
+	}
 	
 	public DrawingPanel() {
 		super();
+		
 		this.setBackground(Color.white);
-		this.setBorder(
-				BorderFactory.createLineBorder(Color.black));
+	
 		this.listOfShapes = new ArrayList<>();
-		Circle circle = new Circle(300, new Point(960, 540) );
-		this.listOfShapes.add(circle);
-		System.out.println("end of DrawingPanel Constructor");
+		
+		this.setIndexOfSelectedShape(0);
+		
+		reset = true;
+	}
+	
+	public void addShape(Shape shape) {
+		this.listOfShapes.add((Drawable) shape);
 	}
 	
 	public void paintComponent(Graphics g) {
-		System.out.println("beginning of paintComponent function");
-		super.paintComponent(g);//dessinduJPanel(fond,bordure...)
-		//int w = this.getWidth(), h = this.getHeight(), r = 50, d = 2*r;
-		//g.setColor(Color.RED);
-		//g.fillOval(w/2 - r, h/2 - r, d, d);//disquerougecentré
-		this.listOfShapes.get(0).draw(g);
+		
+		if(reset) {
+			super.paintComponent(g);//dessinduJPanel(fond,bordure...) 
+			reset = false;
+		}
+		
+		g.setColor(((Shape) this.listOfShapes.get(this.indexOfSelectedShape)).getColor());
+		
+		this.listOfShapes.get(this.indexOfSelectedShape).draw(g);
+		
+	}
+
+	public int getIndexOfSelectedShape() {
+		return indexOfSelectedShape;
+	}
+
+	public void setIndexOfSelectedShape(int indexOfSelectedShape) {
+		this.indexOfSelectedShape = indexOfSelectedShape;
+	}
+
+	public void setCurrentShapeTo(AvailableShape newShape) {// PLEASE NOTE : This only works because for each loops always iterate over enums in the same order
+		int i = 0;
+		
+		for(AvailableShape sh : AvailableShape.values()) {
+			if(sh.equals(newShape)) {
+				this.setIndexOfSelectedShape(i);
+			}
+		i++;
+		}
+	}
+	
+	public void resetCanvas(Graphics graphics) {
+		reset = true;
+	}
+	
+	private class WhiteRectangle implements Drawable{
+
+		@Override
+		public void draw(Graphics g) {
+			g.fillRect(0, 0, 200, 200);
+		}
+		
 	}
 }

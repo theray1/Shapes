@@ -41,5 +41,11 @@ public class Spiral implements Shape, Drawable {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void moveTo(Point p) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

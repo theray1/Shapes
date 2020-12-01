@@ -1,5 +1,7 @@
 package projetPOO;
 
+import java.awt.Point;
+
 public class Task implements Runnable {
 	
 	public Task(){
@@ -7,8 +9,8 @@ public class Task implements Runnable {
 	}
 
 	public void run() {
-		View view = new View("my JFrame", 1920, 1080);
-		view.setVisible(true);
+	
+
 		
 	}
 }
