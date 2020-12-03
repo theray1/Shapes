@@ -27,30 +27,32 @@ public class Controller {
 	}
 	
 	public void changeShapeSelectionTo(AvailableShape newShape) {
-		Object currentShape = this.linkedView.getLinkedDrawingPanel().getListOfShapes().get(this.linkedView.getLinkedDrawingPanel().getIndexOfSelectedShape());
-		
-		if(!currentShape.getClass().equals((new Circle(0, new Point(0,0)).getClass())) && newShape.equals(AvailableShape.circle)) {
-			this.linkedView.getLinkedDrawingPanel().resetCanvas(this.linkedView.getLinkedDrawingPanel().getGraphics());
-			this.linkedView.getLinkedDrawingPanel().setCurrentShapeTo(AvailableShape.circle);
+		int i = 0;
+		for(AvailableShape sh : AvailableShape.values()) {
+			if(sh.equals(newShape)) {
+				this.linkedModel.setIndexOfSelectedShape(i);
+			}
+		i++;
 		}
 		
-		if(!currentShape.getClass().equals((new Square(0, new Point(0,0)).getClass())) && newShape.equals(AvailableShape.square)) {
-			this.linkedView.getLinkedDrawingPanel().resetCanvas(this.linkedView.getLinkedDrawingPanel().getGraphics());
-			this.linkedView.getLinkedDrawingPanel().setCurrentShapeTo(AvailableShape.square);
-		}
+		this.linkedView.getLinkedDrawingPanel().resetCanvas();
 		
-		this.linkedModel.updateShape();
+		this.linkedModel.setShape((Shape) this.linkedModel.getListOfShapes().get(this.linkedModel.getIndexOfSelectedShape()));
+		
+		this.linkedModel.getLinkedView().getLinkedDrawingPanel().setSelectedShape(this.linkedModel.getShape());
 	}
 
 	public void changePathSelectionTo(AvailablePath newPath) {// PLEASE NOTE : this only works because 
 		int i = 0;
-		
 		for(AvailablePath pa : AvailablePath.values()) {
 			if(pa.equals(newPath)) {
 				this.linkedModel.setIndexOfSelectedPath(i);
 			}
 		i++;
 		}
+		
+		this.linkedView.getLinkedDrawingPanel().resetCanvas();
+		
 		this.linkedModel.setPath(this.linkedModel.getListOfPaths().get(this.linkedModel.getIndexOfSelectedPath()));
 	}
 
@@ -63,19 +65,30 @@ public class Controller {
 		this.linkedModel.getShape().setColor(new Color(pick1, pick2, pick3));
 	}
 	
-	public void accelerate(int valueOfSpeedChange) {
-		if(this.linkedModel.getPath().getSpeed() >= 10) {
-			this.linkedModel.getPath().setSpeed(10);
+	public void accelerate() {
+		System.out.println("accelerate");
+		if(this.linkedModel.getSpeed() >= 10) {
+			this.linkedModel.setSpeed(10);
 		}else {
-			this.linkedModel.getPath().highenSpeed(valueOfSpeedChange);
+			this.linkedModel.addSpeed(1);
 		}
 	}
 
-	public void decelerate(int valueOfSpeedChange) {
-		if(this.linkedModel.getPath().getSpeed() <= 1) {
-			this.linkedModel.getPath().setSpeed(1);
+	public void decelerate() {
+		System.out.println("decelerate");
+		if(this.linkedModel.getSpeed() <= 1) {
+			this.linkedModel.setSpeed(1);
 		}else {
-			this.linkedModel.getPath().lowerSpeed(valueOfSpeedChange);
+			this.linkedModel.removeSpeed(1);
 		}
+	}
+
+
+	public void updateShapeSelection() {
+		linkedView.getLinkedDrawingPanel().setSelectedShape((Shape) this.linkedModel.getListOfShapes().get(this.linkedModel.getIndexOfSelectedShape()));
+	}
+
+	public void stopTime() {
+		this.linkedModel.stopLoop();
 	}
 }

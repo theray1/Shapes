@@ -32,7 +32,7 @@ public class Square implements Shape, Drawable{
 	}
 
 	@Override
-	public void moveTo(double x, double y) {
+	public void moveTo(int x, int y) {
 		this.topLeftCorner = new Point((int) x, (int) y);
 	}
 
@@ -49,11 +49,12 @@ public class Square implements Shape, Drawable{
 	@Override
 	public void rotate(double angle) {
 		rotation += angle;
+		
+		
 	}
 	
 	@Override
 	public void draw(Graphics g) {
-		
 		Graphics2D g2d = (Graphics2D) g;
 		
 		g2d.rotate(Math.toRadians(rotation), this.topLeftCorner.getX() + this.length/2, this.topLeftCorner.getY() + this.length/2);

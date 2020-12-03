@@ -16,23 +16,31 @@ public class Circle implements Shape, Drawable{
 		this.color = Color.black;
 	}
 	
+	@Override
+	public void moveTo(int x, int y) {
+		this.setPosition(x, y);
+	}
+	
+	@Override
+	public void moveTo(Point p) {
+		this.setPosition((int) p.getX(), (int) p.getY());
+	}
+	
 	public void setPosition(int x, int y) {
 		this.center.x = x;
 		this.center.y = y;
 	}
 	
+	public void setPosition(Point p) {
+		this.center = p;
+	}
+	
 	public Point getPosition() {
-		return new Point();
+		return new Point(this.center);
 	}
 
 	public Point getCenter() {
 		return this.center;
-	}
-	
-	@Override
-	public void moveTo(double x, double y) {
-		// TODO Auto-generated method stub
-		this.setPosition((int) x, (int) y);
 	}
 
 	@Override
@@ -58,12 +66,6 @@ public class Circle implements Shape, Drawable{
 
 	public void setRadius(int radius) {
 		this.radius = radius;
-	}
-
-	@Override
-	public void moveTo(Point p) {
-		// TODO Auto-generated method stub
-		this.setPosition((int) p.getX(), (int) p.getY());
 	}
 
 	@Override

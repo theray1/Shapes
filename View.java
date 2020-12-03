@@ -39,12 +39,12 @@ public class View extends JFrame{
 	
 	private void buildContentPane() {
 		getContentPane().setFocusable(true);
-		getContentPane().addKeyListener(new keyBoardListener());
+		getContentPane().addKeyListener(new KeyBoardListener());
 		
 		DrawingPanel pathAndShapeDisplay = new DrawingPanel();
 		pathAndShapeDisplay.setFocusable(false);
 		pathAndShapeDisplay.setPreferredSize(new Dimension(1220, 1080));
-		pathAndShapeDisplay.addMouseListener(new pathAndShapeDisplayListener());
+		pathAndShapeDisplay.addMouseListener(new PathAndShapeDisplayListener());
 		getContentPane().add(pathAndShapeDisplay, BorderLayout.CENTER);
 		
 		this.linkedDrawingPanel = pathAndShapeDisplay;
@@ -66,8 +66,8 @@ public class View extends JFrame{
 		circleShapeButton.setFocusable(false);
 		circleShapeButton.setSelected(true);
 		
-		squareShapeButton.addActionListener(new squareShapeRadioButtonListener());
-		circleShapeButton.addActionListener(new circleShapeRadioButtonListener());
+		squareShapeButton.addActionListener(new SquareShapeRadioButtonListener());
+		circleShapeButton.addActionListener(new CircleShapeRadioButtonListener());
 		
 		shapeButtonsGroup.add(squareShapeButton);
 		shapeButtonsGroup.add(circleShapeButton);
@@ -88,6 +88,10 @@ public class View extends JFrame{
 		circlePathButton.setFocusable(false);
 		circlePathButton.setSelected(true);
 		
+		spiralPathButton.addActionListener(new SpiralPathRadioButtonListener());
+		lemniscatePathButton.addActionListener(new LemniscatePathRadioButtonListener());
+		circlePathButton.addActionListener(new CirclePathRadioButtonListener());
+		
 		pathButtonsGroup.add(circlePathButton);
 		pathButtonsGroup.add(lemniscatePathButton);
 		pathButtonsGroup.add(spiralPathButton);
@@ -105,30 +109,34 @@ public class View extends JFrame{
 		JPanel buttonsGroup = new JPanel();
 		buttonsGroup.setMaximumSize(new Dimension(200,200));
 		
-		JButton testButton = new JButton("color");
-		testButton.setFocusable(false);
-		testButton.addActionListener(new TestListener());
-		buttonsGroup.add(testButton);
+		JButton colorButton = new JButton("color");
+		colorButton.setFocusable(false);
+		colorButton.addActionListener(new ColorButtonListener());
+		buttonsGroup.add(colorButton);
 		
-		JButton quitButton = new JButton("close");
-		quitButton.setFocusable(false);
-		quitButton.addMouseListener(new quitButtonListener());
-		buttonsGroup.add(quitButton);
-		
-		JButton resetButton = new JButton("reset canvas");
-		resetButton.setFocusable(false);
-		resetButton.addMouseListener(new resetButtonListener());
-		buttonsGroup.add(resetButton);
-		
+		JButton stopTimeButton = new JButton("『ZA WARDUO』");
+		stopTimeButton.setFocusable(false);
+		stopTimeButton.addMouseListener(new StopTimeButtonListener());
+		buttonsGroup.add(stopTimeButton);		
 		JButton speed = new JButton("faster");
 		speed.setFocusable(false);
-		speed.addMouseListener(new fasterButtonListener());
+		speed.addMouseListener(new FasterButtonListener());
 		buttonsGroup.add(speed);
 		
 		JButton slow = new JButton("slower");
 		slow.setFocusable(false);
-		slow.addMouseListener(new slowerButtonListener());
+		slow.addMouseListener(new SlowerButtonListener());
 		buttonsGroup.add(slow);
+		
+		JButton resetButton = new JButton("reset canvas");
+		resetButton.setFocusable(false);
+		resetButton.addMouseListener(new ResetButtonListener());
+		buttonsGroup.add(resetButton);
+		
+		JButton quitButton = new JButton("close");
+		quitButton.setFocusable(false);
+		quitButton.addMouseListener(new QuitButtonListener());
+		buttonsGroup.add(quitButton);
 		
 		settings.add(buttonsGroup);
 		
@@ -140,7 +148,8 @@ public class View extends JFrame{
 	}
 	
 	void update(){
-		this.linkedDrawingPanel.repaint();
+		linkedDrawingPanel.repaint();
+		linkedDrawingPanel.revalidate(); // this line helps preventing paint-request skipping, which causes visual lag 
 	}
 
 	public Model getLinkedModel() {
@@ -163,13 +172,7 @@ public class View extends JFrame{
 		this.linkedController = linkedController;
 	}
 	
-	public void addShape(Shape shape) {
-		this.linkedDrawingPanel.addShape(shape);
-	}
-
-	
-	
-	private class TestListener implements ActionListener {
+	private class ColorButtonListener implements ActionListener {
 		
 		@Override
 		public void actionPerformed(ActionEvent action) {
@@ -178,26 +181,13 @@ public class View extends JFrame{
 
 	}
 	
-	private class resetButtonListener implements MouseListener {
 
-		@Override
-		public void mouseClicked(MouseEvent arg0) {
-			linkedDrawingPanel.resetCanvas(linkedDrawingPanel.getGraphics());
-		}
-
-		public void mouseEntered(MouseEvent arg0) {}
-		public void mouseExited(MouseEvent arg0) {}
-		public void mousePressed(MouseEvent arg0) {}
-		public void mouseReleased(MouseEvent arg0) {}
-		
-	}
 	
-	private class quitButtonListener implements MouseListener {
+	private class QuitButtonListener implements MouseListener {
 
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			dispose();
+			System.exit(EXIT_ON_CLOSE);
 		}
 		
 		public void mouseEntered(MouseEvent arg0) {}
@@ -206,7 +196,7 @@ public class View extends JFrame{
 		public void mouseReleased(MouseEvent arg0) {}
 	}
 	
-	private class circleShapeRadioButtonListener implements ActionListener {
+	private class CircleShapeRadioButtonListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent action) {
@@ -215,7 +205,7 @@ public class View extends JFrame{
 		
 	}
 	
-	private class squareShapeRadioButtonListener implements ActionListener {
+	private class SquareShapeRadioButtonListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent action) {
@@ -223,7 +213,7 @@ public class View extends JFrame{
 		}
 	}
 
-	private class circlePathRadioButtonListener implements ActionListener{
+	private class CirclePathRadioButtonListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent action) {
@@ -233,7 +223,7 @@ public class View extends JFrame{
 		
 	}
 	
-	private class spiralPathRadioButtonListener implements ActionListener{
+	private class SpiralPathRadioButtonListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -242,7 +232,7 @@ public class View extends JFrame{
 		
 	}
 	
-	private class lemniscatePathRadioButtonListener implements ActionListener{
+	private class LemniscatePathRadioButtonListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -251,11 +241,11 @@ public class View extends JFrame{
 		
 	}
 	
-	private class pathAndShapeDisplayListener implements MouseListener {
+	private class PathAndShapeDisplayListener implements MouseListener {
 
 		@Override
 		public void mouseClicked(MouseEvent event) {
-			if(linkedModel.getShape().contains(new Point((int)event.getPoint().getX(), (int)(event.getPoint().getY())))) { //- 40 pour prendre en compte le haut de la fenetre, qui n'est pas pris en compte pour les coordonnées du drawing panel, à l'inverse des coordonnées sur l'écran
+			if(linkedModel.getShape().contains(new Point((int)event.getPoint().getX(), (int)(event.getPoint().getY())))) { 
 				linkedController.changeColor();
 			}
 		}
@@ -274,11 +264,11 @@ public class View extends JFrame{
 		
 	}
 	
-	private class fasterButtonListener implements MouseListener {
+	private class FasterButtonListener implements MouseListener {
 
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
-			linkedController.accelerate(1);
+			linkedController.accelerate();
 		}
 
 		@Override
@@ -295,11 +285,11 @@ public class View extends JFrame{
 		
 	}
 	
-	private class slowerButtonListener implements MouseListener {
+	private class SlowerButtonListener implements MouseListener {
 
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
-			linkedController.decelerate(1);
+			linkedController.decelerate();
 		}
 
 		@Override
@@ -316,16 +306,15 @@ public class View extends JFrame{
 		
 	}
 	
-	private class keyBoardListener implements KeyListener{
+	private class KeyBoardListener implements KeyListener{
 
 		@Override
 		public void keyPressed(KeyEvent event) {
-			System.out.println(event.getKeyChar());
 			if(event.getKeyChar() == '+') {
-				linkedController.accelerate(1);
+				linkedController.accelerate();
 			}
 			if(event.getKeyChar() == '-') {
-				linkedController.decelerate(1);
+				linkedController.decelerate();
 			}
 		}
 
@@ -334,6 +323,35 @@ public class View extends JFrame{
 
 		@Override
 		public void keyTyped(KeyEvent event) {}
+		
+	}
+	
+	private class ResetButtonListener implements MouseListener {
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			linkedDrawingPanel.resetCanvas();
+		}
+
+		public void mouseEntered(MouseEvent arg0) {}
+		public void mouseExited(MouseEvent arg0) {}
+		public void mousePressed(MouseEvent arg0) {}
+		public void mouseReleased(MouseEvent arg0) {}
+		
+	}
+	
+	private class  StopTimeButtonListener implements MouseListener{
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			linkedController.stopTime();
+		}
+		
+		public void mouseEntered(MouseEvent arg0) {}
+		public void mouseExited(MouseEvent arg0) {}
+		public void mousePressed(MouseEvent arg0) {}
+		public void mouseReleased(MouseEvent arg0) {
+		}
 		
 	}
 }
