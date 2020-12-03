@@ -102,10 +102,7 @@ public class Model {
 			if(!(shape.getReferencePoint().equals(temp))) {// ce if permet de rotate le forme seulement si elle change de position, afin d'éviter de voir les rformes tourner sur elle meme, a basse vitesse
 				getShape().rotate(5);
 			}
-			
 			this.updateDrawingPanel();
-			
-			System.out.println(this.speed);
 		}
 		
 		if(updateIterator > 100) {

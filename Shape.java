@@ -2,7 +2,7 @@ package projetPOO;
 
 import java.awt.*;
 
-public interface Shape {
+public interface Shape extends Drawable{
 	public abstract Point getPosition();
 	public abstract void moveTo(int x, int y);
 	public abstract void moveTo(Point p);

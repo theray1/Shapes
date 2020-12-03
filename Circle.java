@@ -5,9 +5,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class Circle implements Shape, Drawable{
+public class Circle implements Shape{
 	private int radius;
-	private Point center;
+	private Point center; //center is the reference point of the circle shape
 	private Color color;
 	
 	public Circle(int radius, Point center) {
@@ -45,13 +45,11 @@ public class Circle implements Shape, Drawable{
 
 	@Override
 	public Color getColor() {
-		// TODO Auto-generated method stub
 		return this.color;
 	}
 
 	@Override
 	public void setColor(Color newColor) {
-		// TODO Auto-generated method stub
 		this.color = newColor;
 	}
 

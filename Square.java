@@ -12,7 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Square implements Shape, Drawable{
+public class Square implements Shape{
 	
 	private double length;
 	private Point topLeftCorner;
