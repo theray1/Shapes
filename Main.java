@@ -1,5 +1,6 @@
 package projetPOO;
 
+
 import java.awt.Point;
 import java.util.Timer;
 
@@ -25,7 +26,6 @@ public class Main{
 				controller.setLinkedView(view);
 				model.setLinkedView(view);
 				controller.setLinkedModel(model);
-				controller.updateShapeSelection();
 			}
 			
 		});
@@ -37,7 +37,7 @@ public class Main{
 			@Override
 			public void run() {
 				//Créer la classe tickController, qui s'occupe d'éxecuter la programme en boucle
-				TickController tickController = new TickController(model);
+				TickController tickController = new TickController(controller);
 				Timer timer = new Timer();
 				timer.scheduleAtFixedRate(tickController, 16, 16);
 			}

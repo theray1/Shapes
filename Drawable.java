@@ -1,5 +1,6 @@
 package projetPOO;
 
+
 import java.awt.Graphics;
 
 public interface Drawable {

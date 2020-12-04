@@ -1,5 +1,6 @@
 package projetPOO;
 
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -14,12 +15,12 @@ import java.awt.event.*;
 
 public class Square implements Shape{
 	
-	private double length;
+	private int length;
 	private Point topLeftCorner;
 	private Color color;
-	private double rotation;
+	private int rotation;
 	
-	public Square(double length, Point topLeftCorner) {
+	public Square(int length, Point topLeftCorner) {
 		this.length = length;
 		this.topLeftCorner = topLeftCorner;
 		this.color = Color.black;
@@ -49,44 +50,42 @@ public class Square implements Shape{
 	@Override
 	public void rotate(double angle) {
 		rotation += angle;
-		
-		
 	}
 	
 	@Override
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		
-		g2d.rotate(Math.toRadians(rotation), this.topLeftCorner.getX() + this.length/2, this.topLeftCorner.getY() + this.length/2);
+		g2d.rotate(Math.toRadians(rotation), topLeftCorner.getX() + length/2, topLeftCorner.getY() + length/2);
 		
-		g.drawRect((int) this.topLeftCorner.getX(), (int) this.topLeftCorner.getY(), (int) this.length, (int) this.length);
+		g.drawRect((int) topLeftCorner.getX(), (int) topLeftCorner.getY(), (int) length, (int) length);
 	}
 
 	@Override
 	public void moveTo(Point p) {
-		this.topLeftCorner = p;
+		topLeftCorner = p;
 	}
 
 	@Override
 	public int getRotation() {
-		return (int) this.rotation;
+		return (int) rotation;
 	}
 	
-	public Drawable clone() {
-		return new Square(this.length, this.topLeftCorner);
+	public Shape clone() {
+		return new Square(length, topLeftCorner);
 	}
 
 	@Override
 	public boolean contains(Point point) {
-		return Math.max(Math.abs((point.getX() - (this.getReferencePoint().getX() + this.length/2)) * Math.cos(this.rotation)), Math.abs((point.getY() - (this.getReferencePoint().getY() + this.length/2)) * Math.cos(this.rotation))) <= this.length / 2;
+		return Math.max(Math.abs((point.getX() - (topLeftCorner.getX() + length/2)) * Math.cos(rotation)), Math.abs((point.getY() - (topLeftCorner.getY() + length/2)) * Math.cos(rotation))) <= length / 2;
 	}
 	
-	public void setRotation(double rotation) {
-		this.rotation = rotation;
+	public void setRotation(int newRotation) {
+		rotation = newRotation;
 	}
 
 	@Override
 	public Point getReferencePoint() {
-		return this.topLeftCorner;
+		return topLeftCorner;
 	}
 }

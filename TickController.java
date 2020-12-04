@@ -1,17 +1,18 @@
 package projetPOO;
 
+
 import java.util.TimerTask;
 
 import javax.swing.SwingUtilities;
 
 public class TickController extends TimerTask {
-	private final Model linkedModel;
+	private final Controller linkedController;
 	
-	public TickController(Model model) {
-		this.linkedModel = model;
+	public TickController(Controller controller) {
+		this.linkedController = controller;
 	}
 	
 	public void run() {
-			linkedModel.evolve();
+			linkedController.evolve();
 	}
 }

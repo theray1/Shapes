@@ -1,5 +1,6 @@
 package projetPOO;
 
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -18,44 +19,45 @@ public class Circle implements Shape{
 	
 	@Override
 	public void moveTo(int x, int y) {
-		this.setPosition(x, y);
+		setPosition(x, y);
 	}
 	
 	@Override
 	public void moveTo(Point p) {
-		this.setPosition((int) p.getX(), (int) p.getY());
+		setPosition((int) p.getX(), (int) p.getY());
 	}
 	
 	public void setPosition(int x, int y) {
-		this.center.x = x;
-		this.center.y = y;
+		center.x = x;
+		center.y = y;
 	}
 	
 	public void setPosition(Point p) {
-		this.center = p;
+		center = p;
 	}
 	
 	public Point getPosition() {
-		return new Point(this.center);
+		return new Point(center);
 	}
 
+
 	public Point getCenter() {
-		return this.center;
+		return center;
 	}
+
 
 	@Override
 	public Color getColor() {
-		return this.color;
+		return color;
 	}
-
-	@Override
+	
 	public void setColor(Color newColor) {
-		this.color = newColor;
+		color = newColor;
 	}
 
 	@Override
 	public void draw(Graphics graphics) {
-		graphics.drawOval((int) this.center.getX() - this.radius, (int) this.center.getY() - this.radius, this.radius * 2, this.radius * 2);
+		graphics.drawOval((int) center.getX() - radius, (int) center.getY() - radius, radius * 2, radius * 2);
 	}
 
 	public int getRadius() {
@@ -68,17 +70,16 @@ public class Circle implements Shape{
 
 	@Override
 	public int getRotation() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	
-	public Drawable clone() {
-		return new Circle(this.radius, this.center);
+	public Shape clone() {
+		return new Circle(radius, center);
 	}
 
 	@Override
 	public boolean contains(Point point) {
-		return Math.sqrt(Math.pow(point.getX() - this.center.getX(), 2) + Math.pow(point.getY() - this.center.getY(), 2)) <= this.radius;
+		return Math.sqrt(Math.pow(point.getX() - center.getX(), 2) + Math.pow(point.getY() - center.getY(), 2)) <= radius;
 	}
 
 	@Override
@@ -86,6 +87,6 @@ public class Circle implements Shape{
 
 	@Override
 	public Point getReferencePoint() {
-		return this.center;
+		return center;
 	}
 }

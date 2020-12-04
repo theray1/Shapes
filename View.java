@@ -1,5 +1,6 @@
 package projetPOO;
 
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,39 +16,32 @@ public class View extends JFrame{
 	private DrawingPanel linkedDrawingPanel;
 	private Controller linkedController;
 	private Model linkedModel;
-	
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 1L;
 
 	public View(String title, int w, int h, Controller linkedController, Model linkedModel) {
 		super(title);
-		this.setLinkedController(linkedController);
-		this.setLinkedModel(linkedModel);
+		this.setLinkedController(linkedController);//Lie le controller et cette view
+		this.setLinkedModel(linkedModel);//Lie le model et cette view
 		build(w, h);
 	}
 	
 	private void build(int w, int h) {
-		setPreferredSize(new Dimension(w, h));
-		buildContentPane(); //TODO (contenu)
+		setPreferredSize(new Dimension(w, h));//Set les dimensions de la fenetre de l'application 
+		buildContentPane(); //Créer le contenu de la fenetre de l'application
 		//setLocationRelativeTo(null); //set la position de la fenetre au milieu de l'écran
-		setResizable(true); //la taille ne peut pas être modifiée
+		setResizable(false); //la taille ne peut pas être modifiée
 		pack(); // dimensionnement des composants (?);
-		
 	}
 	
 	private void buildContentPane() {
-		getContentPane().setFocusable(true);
-		getContentPane().addKeyListener(new KeyBoardListener());
 		
-		DrawingPanel pathAndShapeDisplay = new DrawingPanel();
-		pathAndShapeDisplay.setFocusable(false);
+		DrawingPanel pathAndShapeDisplay = new DrawingPanel(linkedModel);
+		pathAndShapeDisplay.setFocusable(true);
+		pathAndShapeDisplay.addKeyListener(new KeyBoardListener());
 		pathAndShapeDisplay.setPreferredSize(new Dimension(1220, 1080));
 		pathAndShapeDisplay.addMouseListener(new PathAndShapeDisplayListener());
 		getContentPane().add(pathAndShapeDisplay, BorderLayout.CENTER);
 		
-		this.linkedDrawingPanel = pathAndShapeDisplay;
+		linkedDrawingPanel = pathAndShapeDisplay;
 		
 		JPanel settings = new JPanel();
 		settings.setFocusable(false);
@@ -105,7 +99,6 @@ public class View extends JFrame{
 		settings.add(pathButtons);
 		settings.add(shapeButtons);
 		
-		
 		JPanel buttonsGroup = new JPanel();
 		buttonsGroup.setMaximumSize(new Dimension(200,200));
 		
@@ -147,9 +140,9 @@ public class View extends JFrame{
 		this.linkedDrawingPanel = drawingPanel;
 	}
 	
-	void update(){
+	public void update(){
 		linkedDrawingPanel.repaint();
-		linkedDrawingPanel.revalidate(); // this line helps preventing paint-request skipping, which causes visual lag 
+		//linkedDrawingPanel.revalidate(); // this line helps preventing paint-request skipping, which can cause visual lag 
 	}
 
 	public Model getLinkedModel() {
@@ -180,9 +173,7 @@ public class View extends JFrame{
 		}
 
 	}
-	
 
-	
 	private class QuitButtonListener implements MouseListener {
 
 		@Override
@@ -250,16 +241,9 @@ public class View extends JFrame{
 			}
 		}
 
-		@Override
 		public void mouseEntered(MouseEvent arg0) {}
-
-		@Override
 		public void mouseExited(MouseEvent arg0) {}
-
-		@Override
 		public void mousePressed(MouseEvent arg0) {}
-
-		@Override
 		public void mouseReleased(MouseEvent arg0) {}
 		
 	}
@@ -271,16 +255,9 @@ public class View extends JFrame{
 			linkedController.accelerate();
 		}
 
-		@Override
 		public void mouseEntered(MouseEvent arg0) {}
-
-		@Override
 		public void mouseExited(MouseEvent arg0) {}
-
-		@Override
 		public void mousePressed(MouseEvent arg0) {}
-
-		@Override
 		public void mouseReleased(MouseEvent arg0) {}
 		
 	}
@@ -292,16 +269,9 @@ public class View extends JFrame{
 			linkedController.decelerate();
 		}
 
-		@Override
 		public void mouseEntered(MouseEvent arg0) {}
-
-		@Override
 		public void mouseExited(MouseEvent arg0) {}
-
-		@Override
 		public void mousePressed(MouseEvent arg0) {}
-
-		@Override
 		public void mouseReleased(MouseEvent arg0) {}
 		
 	}

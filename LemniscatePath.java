@@ -1,15 +1,14 @@
 package projetPOO;
 
+
 import java.awt.Point;
 
 public class LemniscatePath implements Path {
-	private int radius;
 	private Point center1;
 	private Point center2;
 	private double position;
 	
-	public LemniscatePath(int radius, Point center1, Point center2) {
-		this.radius = radius;
+	public LemniscatePath(Point center1, Point center2) {
 		this.center1 = center1;
 		this.center2 = center2;
 		position = 0;

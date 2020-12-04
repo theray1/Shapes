@@ -1,9 +1,9 @@
 package projetPOO;
 
+
 import java.awt.Point;
 
 public class CirclePath implements Path{
-	
 	private int radius;
 	private Point center;
 	private int position;
@@ -17,6 +17,6 @@ public class CirclePath implements Path{
 	@Override
 	public Point nextPoint() {
 		position++;
-		return new Point(((int) ((Math.cos(position  * Math.PI / 12) * this.radius + this.center.getX()))), (int) ((Math.sin(position  * Math.PI / 12) * this.radius + this.center.getY())));
+		return new Point(((int) ((Math.cos(position  * Math.PI / 12.0) * radius + center.getX()))), (int) ((Math.sin(position  * Math.PI / 12.0) * radius + center.getY())));
 	}
 }

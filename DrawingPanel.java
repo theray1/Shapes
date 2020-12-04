@@ -1,23 +1,21 @@
 package projetPOO;
 
+
 import java.util.ArrayList;
 import java.awt.*;
 import javax.swing.*;
 
 public class DrawingPanel extends JPanel{
-	private static final long serialVersionUID = 1L;
-	private Drawable selectedShape;
+
 	private boolean reset;
+	private Model linkedModel;
 
 	
-	public DrawingPanel() {
+	public DrawingPanel(Model model) {
 		super();
-		this.setBackground(Color.white);
+		linkedModel = model;
+		setBackground(Color.white);
 		reset = true;
-	}
-	
-	public void setSelectedShape(Shape shape) {
-		this.selectedShape = (Drawable) shape;
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -27,9 +25,9 @@ public class DrawingPanel extends JPanel{
 			reset = false;
 		}
 		
-		g.setColor(((Shape) selectedShape).getColor());
+		g.setColor((linkedModel.getShape()).getColor());
 		
-		selectedShape.draw(g);
+		linkedModel.getShape().draw(g);
 	}
 	
 	public void resetCanvas() {
