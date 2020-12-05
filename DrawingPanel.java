@@ -4,13 +4,19 @@ package projetPOO;
 import java.util.ArrayList;
 import java.awt.*;
 import javax.swing.*;
-
+/**
+ * this class represents a graphic window in which the graphic elements are going to be displayed
+ * @author theray1
+ *
+ */
 public class DrawingPanel extends JPanel{
-
 	private boolean reset;
 	private Model linkedModel;
 
-	
+	/**
+	 * class constructor
+	 * @param model the model containing the elements to be displayed in this drawing panel
+	 */
 	public DrawingPanel(Model model) {
 		super();
 		linkedModel = model;
@@ -18,18 +24,26 @@ public class DrawingPanel extends JPanel{
 		reset = true;
 	}
 	
-	public void paintComponent(Graphics g) {
+	/**
+	 * paints a shape on the canvas
+	 * @param graphics the visual context 
+	 */
+	public void paintComponent(Graphics graphics) {
 		
 		if(reset) {
-			super.paintComponent(g);//dessinduJPanel(fond,bordure...) 
+			super.paintComponent(graphics);//dessinduJPanel(fond,bordure...) 
 			reset = false;
+			return;
 		}
 		
-		g.setColor((linkedModel.getShape()).getColor());
+		graphics.setColor((linkedModel.getShape()).getColor());
 		
-		linkedModel.getShape().draw(g);
+		linkedModel.getShape().draw(graphics);
 	}
 	
+	/**
+	 * resets the canvas by erasing everything currently drawn onto it
+	 */
 	public void resetCanvas() {
 		reset = true;
 	}

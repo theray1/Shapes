@@ -2,7 +2,11 @@ package projetPOO;
 
 
 import java.awt.*;
-
+/**
+ * this interface adds methods allowing to manipulate shapes
+ * @author theray1
+ *
+ */
 public interface Shape extends Drawable{
 	public abstract Point getPosition();
 	public abstract void moveTo(int x, int y);

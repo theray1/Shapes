@@ -1,6 +1,5 @@
 package projetPOO;
 
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +9,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.*;
-
+/**
+ * this class represents a view according to an MVC structure
+ * @author theray1
+ *
+ */
 public class View extends JFrame{
 	
 	private DrawingPanel linkedDrawingPanel;
@@ -136,34 +139,65 @@ public class View extends JFrame{
 		getContentPane().add(settings, BorderLayout.EAST);
 	}
 	
+	/**
+	 * linkedDrawingPanel setter
+	 * @param drawingPanel the drawing panel of the view
+	 */
 	public void setLinkedDrawingPanel(DrawingPanel drawingPanel) {
-		this.linkedDrawingPanel = drawingPanel;
+		linkedDrawingPanel = drawingPanel;
 	}
 	
+	/**
+	 * applique les demandes de peinture avec les methodes draw des shapes
+	 */
 	public void update(){
 		linkedDrawingPanel.repaint();
-		//linkedDrawingPanel.revalidate(); // this line helps preventing paint-request skipping, which can cause visual lag 
+		linkedDrawingPanel.revalidate(); // this line helps preventing paint-request skipping, which can cause visual lag 
 	}
 
+	/**
+	 * linkedModel getter
+	 * @return the current linkedModel of the view
+	 */
 	public Model getLinkedModel() {
 		return linkedModel;
 	}
 	
+	/**
+	 * linkedDrawingPanel getter
+	 * @return the current linkedDrawingPanel
+	 */
 	public DrawingPanel getLinkedDrawingPanel() {
 		return linkedDrawingPanel;
 	}
 
+	/**
+	 * linkedModel setter
+	 * @param linkedModel the new linkedModel of the view 
+	 */
 	public void setLinkedModel(Model linkedModel) {
 		this.linkedModel = linkedModel;
 	}
-
+	
+	/**
+	 * linkedController getter
+	 * @return linkedController the current linkedController of the view
+	 */
 	public Controller getLinkedController() {
 		return linkedController;
 	}
 
+	/**
+	 * linkedController setter 
+	 * @param linkedController the new linkedController of the view
+	 */
 	public void setLinkedController(Controller linkedController) {
 		this.linkedController = linkedController;
 	}
+	
+	/*
+	 * EVENT LISTENERS
+	 */
 	
 	private class ColorButtonListener implements ActionListener {
 		

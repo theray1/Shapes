@@ -6,13 +6,20 @@ import java.awt.Point;
 import java.util.Random;
 
 import javax.swing.SwingUtilities;
-
+/**
+ * this class creates a controller according to an MVC structure
+ * @author theray1
+ *
+ */
 public class Controller {
 	private View linkedView;
 	private Model linkedModel;
 	private int updateIterator;
 	private boolean stop;
 	
+	/**
+	 * class constructor
+	 */
 	public Controller() {
 		this.linkedModel = null;
 		this.linkedView = null;
@@ -20,13 +27,9 @@ public class Controller {
 		updateIterator = 0;
 	}
 	
-	public Controller(Model model, View linkedView) {
-		this.linkedModel = model;
-		this.linkedView = linkedView;
-		this.stop = false;
-		this.updateIterator = 0;
-	}
-	
+	/**
+	 * main method of the program, which start a progression of the model, and updates the drawing panel accordingly
+	 */
 	public void evolve() {
 		SwingUtilities.invokeLater(new Runnable() {
 
@@ -47,15 +50,27 @@ public class Controller {
 		});
 	}
 	
+	/**
+	 * linkedModel setter
+	 * @param newLinkedModel the new model linked to the controller
+	 */
 	public void setLinkedModel(Model newLinkedModel) {
 		linkedModel = newLinkedModel;
 	}
 	
+	/**
+	 * linkedView setter
+	 * @param newLinkedView
+	 */
 	public void setLinkedView(View newLinkedView) {
 		linkedView = newLinkedView;
 	}
 	
-	public void changeShapeSelectionTo(AvailableShape newShape) {
+	/**
+	 * changes the current shape to a new one, and clears the canvas
+	 * @param newShape the new shape used by the model, amongst the shapes in AvailableShapes
+	 */
+	public void changeShapeSelectionTo(AvailableShape newShape) {// PLEASE NOTE : this only works because for each loops always iterate over enums in the same order
 		int i = 0;
 		for(AvailableShape sh : AvailableShape.values()) {
 			if(sh.equals(newShape)) {
@@ -64,12 +79,16 @@ public class Controller {
 		i++;
 		}
 		
-		linkedModel.setShape((Shape) linkedModel.getListOfShapes().get(linkedModel.getIndexOfSelectedShape()));
+		linkedModel.setShape(linkedModel.getListOfShapes().get(linkedModel.getIndexOfSelectedShape()));
 		
 		linkedView.getLinkedDrawingPanel().resetCanvas();
 	}
 
-	public void changePathSelectionTo(AvailablePath newPath) {// PLEASE NOTE : this only works because 
+	/**
+	 * changes the current path to a new one, and clears the canvas
+	 * @param newPath the new shape used by the model, amongst the shapes in AvailablePaths
+	 */
+	public void changePathSelectionTo(AvailablePath newPath) {// PLEASE NOTE : this only works because for each loops always iterate over enums in the same order
 		int i = 0;
 		for(AvailablePath pa : AvailablePath.values()) {
 			if(pa.equals(newPath)) {
@@ -80,11 +99,15 @@ public class Controller {
 		
 		linkedModel.setPath(linkedModel.getListOfPaths().get(linkedModel.getIndexOfSelectedPath()));
 		
+		linkedModel.getShape().moveTo(linkedModel.getPath().nextPoint());
+		
 		linkedView.getLinkedDrawingPanel().resetCanvas();
 	}
 
+	/**
+	 * randomly changes the color of the current shape
+	 */
 	public void changeColor() {
-	    
 	    int pick1 = new Random().nextInt(255);
 	    int pick2 = new Random().nextInt(255);
 	    int pick3 = new Random().nextInt(255);
@@ -92,6 +115,9 @@ public class Controller {
 		linkedModel.getShape().setColor(new Color(pick1, pick2, pick3));
 	}
 	
+	/**
+	 * Elevate the current speed by one unity, maximum of 10
+	 */
 	public void accelerate() {
 		if(linkedModel.getSpeed() >= 10) {
 			linkedModel.setSpeed(10);
@@ -99,7 +125,10 @@ public class Controller {
 			linkedModel.addSpeed(1);
 		}
 	}
-
+	
+	/**
+	 * lowers the current speed by one unity, minimum of 1
+	 */
 	public void decelerate() {
 		if(linkedModel.getSpeed() <= 1) {
 			linkedModel.setSpeed(1);
