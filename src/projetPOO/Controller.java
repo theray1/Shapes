@@ -12,10 +12,15 @@ import javax.swing.SwingUtilities;
  *
  */
 public class Controller {
+	/**
+	 * the view the controller sends requests to
+	 */
 	private View linkedView;
+	/**
+	 * the model which this controller is gonna upate
+	 */
 	private Model linkedModel;
-	private int updateIterator;
-	private boolean stop;
+
 	
 	/**
 	 * class constructor
@@ -23,8 +28,6 @@ public class Controller {
 	public Controller() {
 		this.linkedModel = null;
 		this.linkedView = null;
-		this.stop = false;
-		updateIterator = 0;
 	}
 	
 	/**

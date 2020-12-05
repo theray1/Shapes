@@ -14,8 +14,17 @@ import java.awt.Point;
  */
 
 public class Circle implements Shape{
+	/**
+	 * the radius of the circle
+	 */
 	private int radius;
+	/**
+	 * the center of the circle
+	 */
 	private Point center; 
+	/**
+	 * the color of the circle
+	 */
 	private Color color;
 	
 	/**

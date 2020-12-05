@@ -9,8 +9,17 @@ import java.awt.Point;
  *
  */
 public class LemniscatePath implements Path {
+	/**
+	 * the furthest left point of the lemniscate
+	 */
 	private Point center1;
+	/**
+	 * the furthest right point of the lemniscate
+	 */
 	private Point center2;
+	/**
+	 * the integer that keeps track of the current position of the shape on its path
+	 */
 	private double position;
 	
 	/**

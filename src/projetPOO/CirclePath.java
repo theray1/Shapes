@@ -8,7 +8,13 @@ import java.awt.Point;
  *
  */
 public class CirclePath implements Path{
+	/**
+	 * the radius of the circular trajectory
+	 */
 	private int radius;
+	/**
+	 * the center of the circular trajectory
+	 */
 	private Point center;
 	/**
 	 * iterator which keeps track of the current position of a shape on the circle path

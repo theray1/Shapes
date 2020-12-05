@@ -10,7 +10,13 @@ import javax.swing.*;
  *
  */
 public class DrawingPanel extends JPanel{
+	/**
+	 * the boolean that is true when the next drawing panel update resets the graphic context
+	 */
 	private boolean reset;
+	/**
+	 * the model containing the shape that the drawing panel is drawing
+	 */
 	private Model linkedModel;
 
 	/**

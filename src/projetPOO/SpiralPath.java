@@ -12,8 +12,17 @@ public class SpiralPath implements Path{
 	 * this integer regulates how much distance there is between the last point of a revolution and the center of the spiral
 	 */
 	private int growthModifier;
+	/**
+	 * the center of the spiral
+	 */
 	private Point center;
+	/**
+	 * the current rotation of the path
+	 */
 	private int rotation;
+	/**
+	 * the current distance between the center of the point and the current position of a shape, arbitrary unit
+	 */
 	private int distanceToCenter;
 	
 	/**

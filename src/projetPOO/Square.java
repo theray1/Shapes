@@ -18,9 +18,21 @@ import java.awt.event.*;
  *
  */
 public class Square implements Shape{
+	/**
+	 * the length of a side of the square
+	 */
 	private int length;
+	/**
+	 * the position of the top left corner of the square
+	 */
 	private Point topLeftCorner;
+	/**
+	 * the current color of the square
+	 */
 	private Color color;
+	/**
+	 * the current rotation of the square
+	 */
 	private int rotation;
 	
 	/**

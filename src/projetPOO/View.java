@@ -15,9 +15,17 @@ import javax.swing.*;
  *
  */
 public class View extends JFrame{
-	
+	/**
+	 * the drawing panel contained inside the view
+	 */
 	private DrawingPanel linkedDrawingPanel;
+	/**
+	 * the controller linked to this view
+	 */
 	private Controller linkedController;
+	/**
+	 * the model containing the data used by the linked drawing panel
+	 */
 	private Model linkedModel;
 
 	public View(String title, int w, int h, Controller linkedController, Model linkedModel) {

@@ -12,14 +12,41 @@ import javax.swing.SwingUtilities;
  *
  */
 public class Model {
+	/**
+	 * the current path of the model
+	 */
 	private Path path;
+	/*
+	 * the current shape of the model
+	 */
 	private Shape shape;
+	/**
+	 * the list of the paths know to the model
+	 */
 	private ArrayList<Path> listOfPaths;
+	/**
+	 * the index in the list of paths corresponding to the current path
+	 */
 	private int indexOfSelectedPath;
+	/**
+	 * the list of the shapes know to the model
+	 */
 	private ArrayList<Shape> listOfShapes;
+	/**
+	 * the index in the list of shapes corresponding to the current path
+	 */
 	private int indexOfSelectedShape;
+	/**
+	 * the integer that keeps track of the number of update
+	 */
 	private int updateIterator;
+	/**
+	 * the boolean that keeps track of whether or not the shape is moving 
+	 */
 	private boolean stop;
+	/**
+	 * the speed at which the shape moves, arbitrary unit
+	 */
 	private int speed;
 
 	/**
