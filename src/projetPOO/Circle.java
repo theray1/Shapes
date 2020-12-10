@@ -54,7 +54,7 @@ public class Circle implements Shape{
 	 */
 	@Override
 	public void moveTo(Point p) {
-		setPosition((int) p.getX(), (int) p.getY());
+		setPosition((int) p.x, (int) p.y);
 	}
 	
 	/**

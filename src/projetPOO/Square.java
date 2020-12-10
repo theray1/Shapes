@@ -53,17 +53,25 @@ public class Square implements Shape{
 	 */
 	@Override
 	public Point getPosition() {
-		return new Point((int)topLeftCorner.getX(), (int)topLeftCorner.getY());
+		return new Point(topLeftCorner);
 	}
 	
 	/**
 	 * change the x and y position of the center of the circle to x and y parameters, respectively
-	 * @param x the new abscissa of the center of the circle
-	 * @param y the new ordinate of the center of the circle
+	 * @param x the new abscissa of the top left corner of the square
+	 * @param y the new ordinate of the top left corner of the square
 	 */
 	public void setPosition(int x, int y) {
 		topLeftCorner.x = x;
 		topLeftCorner.y = y;
+	}
+	
+	/**
+	 * change the position of the top left corner of the square to p
+	 * @param p the new position of the top left corner of the square
+	 */
+	public void setPosition(Point p) {
+		topLeftCorner = p;
 	}
 	
 	/**
@@ -111,9 +119,9 @@ public class Square implements Shape{
 	public void draw(Graphics graphics) {
 		Graphics2D g2d = (Graphics2D) graphics;
 		
-		g2d.rotate(Math.toRadians(rotation), topLeftCorner.getX() + length/2, topLeftCorner.getY() + length/2);
+		g2d.rotate(Math.toRadians(rotation), topLeftCorner.x + length/2, topLeftCorner.y + length/2);
 		
-		graphics.drawRect((int) topLeftCorner.getX(), (int) topLeftCorner.getY(), (int) length, (int) length);
+		graphics.drawRect((int) topLeftCorner.x, (int) topLeftCorner.y, (int) length, (int) length);
 	}
 
 	/**
