@@ -84,6 +84,8 @@ public class Controller {
 		
 		linkedModel.setShape(linkedModel.getListOfShapes().get(linkedModel.getIndexOfSelectedShape()));
 		
+		linkedModel.getShape().moveTo(linkedModel.getPath().nextPoint());
+		
 		linkedView.getLinkedDrawingPanel().resetCanvas();
 	}
 
