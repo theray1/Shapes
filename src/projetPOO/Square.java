@@ -157,7 +157,7 @@ public class Square implements Shape{
 	 */
 	@Override
 	public boolean contains(Point point) {
-		return Math.max(Math.abs((point.getX() - (topLeftCorner.getX() + length/2)) * Math.cos(rotation)), Math.abs((point.getY() - (topLeftCorner.getY() + length/2)) * Math.cos(rotation))) <= length / 2;
+		return Math.max(Math.abs((point.x - (topLeftCorner.x + length/2)) * Math.cos(rotation)), Math.abs((point.y - (topLeftCorner.y + length/2)) * Math.cos(rotation))) <= length / 2;
 	}
 
 	/**

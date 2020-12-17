@@ -39,7 +39,7 @@ public class View extends JFrame{
 		setPreferredSize(new Dimension(w, h));//Set les dimensions de la fenetre de l'application 
 		buildContentPane(); //Créer le contenu de la fenetre de l'application
 		//setLocationRelativeTo(null); //set la position de la fenetre au milieu de l'écran
-		setResizable(false); //la taille ne peut pas être modifiée
+		setResizable(true); //la taille ne peut pas être modifiée
 		pack(); // dimensionnement des composants (?);
 	}
 	
@@ -59,9 +59,12 @@ public class View extends JFrame{
 		settings.setMinimumSize(new Dimension(100, 0));//Dimension minimum si resize de la fenetre.
 		settings.setPreferredSize(new Dimension(300, 0));
 		settings.setLayout(new BoxLayout(settings, BoxLayout.Y_AXIS));
+		settings.setBackground(Color.GRAY);
 		
 		JPanel shapeButtons = new JPanel();
+		shapeButtons.setFocusable(false);
 		shapeButtons.setMaximumSize(new Dimension(100, 200));
+		shapeButtons.setBackground(Color.GRAY);
 		
 		ButtonGroup shapeButtonsGroup = new ButtonGroup();
 		
@@ -71,8 +74,8 @@ public class View extends JFrame{
 		circleShapeButton.setFocusable(false);
 		circleShapeButton.setSelected(true);
 		
-		squareShapeButton.addActionListener(new SquareShapeRadioButtonListener());
-		circleShapeButton.addActionListener(new CircleShapeRadioButtonListener());
+		squareShapeButton.addMouseListener(new SquareShapeRadioButtonListener());
+		circleShapeButton.addMouseListener(new CircleShapeRadioButtonListener());
 		
 		shapeButtonsGroup.add(squareShapeButton);
 		shapeButtonsGroup.add(circleShapeButton);
@@ -81,21 +84,26 @@ public class View extends JFrame{
 		shapeButtons.add(circleShapeButton);
 		
 		JPanel pathButtons = new JPanel();
+		pathButtons.setFocusable(false);
 		pathButtons.setMaximumSize(new Dimension(200, 200));
+		pathButtons.setBackground(Color.GRAY);
 		
 		ButtonGroup pathButtonsGroup = new ButtonGroup();
 		
 		JRadioButton spiralPathButton = new JRadioButton("spirale");
 		spiralPathButton.setFocusable(false);
+		
 		JRadioButton lemniscatePathButton = new JRadioButton("lemniscate");
 		lemniscatePathButton.setFocusable(false);
+		
 		JRadioButton circlePathButton = new JRadioButton("cercle");
 		circlePathButton.setFocusable(false);
+		
 		circlePathButton.setSelected(true);
 		
-		spiralPathButton.addActionListener(new SpiralPathRadioButtonListener());
-		lemniscatePathButton.addActionListener(new LemniscatePathRadioButtonListener());
-		circlePathButton.addActionListener(new CirclePathRadioButtonListener());
+		spiralPathButton.addMouseListener(new SpiralPathRadioButtonListener());
+		lemniscatePathButton.addMouseListener(new LemniscatePathRadioButtonListener());
+		circlePathButton.addMouseListener(new CirclePathRadioButtonListener());
 		
 		pathButtonsGroup.add(circlePathButton);
 		pathButtonsGroup.add(lemniscatePathButton);
@@ -111,26 +119,29 @@ public class View extends JFrame{
 		settings.add(shapeButtons);
 		
 		JPanel buttonsGroup = new JPanel();
+		buttonsGroup.setFocusable(false);
 		buttonsGroup.setMaximumSize(new Dimension(200,200));
+		buttonsGroup.setBackground(Color.GRAY);
 		
 		JButton colorButton = new JButton("color");
 		colorButton.setFocusable(false);
-		colorButton.addActionListener(new ColorButtonListener());
+		colorButton.addMouseListener(new ColorButtonListener());
 		buttonsGroup.add(colorButton);
 		
 		JButton stopTimeButton = new JButton("『ZA WARDUO』");
 		stopTimeButton.setFocusable(false);
 		stopTimeButton.addMouseListener(new StopTimeButtonListener());
-		buttonsGroup.add(stopTimeButton);		
-		JButton speed = new JButton("faster");
-		speed.setFocusable(false);
-		speed.addMouseListener(new FasterButtonListener());
-		buttonsGroup.add(speed);
+		buttonsGroup.add(stopTimeButton);	
 		
-		JButton slow = new JButton("slower");
-		slow.setFocusable(false);
-		slow.addMouseListener(new SlowerButtonListener());
-		buttonsGroup.add(slow);
+		JButton faster = new JButton("faster");
+		faster.setFocusable(false);
+		faster.addMouseListener(new FasterButtonListener());
+		buttonsGroup.add(faster);
+		
+		JButton slower = new JButton("slower");
+		slower.setFocusable(false);
+		slower.addMouseListener(new SlowerButtonListener());
+		buttonsGroup.add(slower);
 		
 		JButton resetButton = new JButton("reset canvas");
 		resetButton.setFocusable(false);
@@ -207,12 +218,18 @@ public class View extends JFrame{
 	 * EVENT LISTENERS
 	 */
 	
-	private class ColorButtonListener implements ActionListener {
-		
+	private class ColorButtonListener implements MouseListener {
+
+
 		@Override
-		public void actionPerformed(ActionEvent action) {
+		public void mouseClicked(MouseEvent arg0) {
 			linkedController.changeColor();
 		}
+
+		public void mouseEntered(MouseEvent arg0) {}
+		public void mouseExited(MouseEvent arg0) {}
+		public void mousePressed(MouseEvent arg0) {}
+		public void mouseReleased(MouseEvent arg0) {}
 
 	}
 
@@ -229,49 +246,67 @@ public class View extends JFrame{
 		public void mouseReleased(MouseEvent arg0) {}
 	}
 	
-	private class CircleShapeRadioButtonListener implements ActionListener {
-
+	private class CircleShapeRadioButtonListener implements MouseListener {
 		@Override
-		public void actionPerformed(ActionEvent action) {
+		public void mouseClicked(MouseEvent arg0) {
 			linkedController.changeShapeSelectionTo(AvailableShape.circle);
 		}
+
+		public void mouseEntered(MouseEvent arg0) {}
+		public void mouseExited(MouseEvent arg0) {}
+		public void mousePressed(MouseEvent arg0) {}
+		public void mouseReleased(MouseEvent arg0) {}
 		
 	}
 	
-	private class SquareShapeRadioButtonListener implements ActionListener {
-
+	private class SquareShapeRadioButtonListener implements MouseListener {
 		@Override
-		public void actionPerformed(ActionEvent action) {
+		public void mouseClicked(MouseEvent arg0) {
 			linkedController.changeShapeSelectionTo(AvailableShape.square);
 		}
+
+		public void mouseEntered(MouseEvent arg0) {}
+		public void mouseExited(MouseEvent arg0) {}
+		public void mousePressed(MouseEvent arg0) {}
+		public void mouseReleased(MouseEvent arg0) {}
 	}
 
-	private class CirclePathRadioButtonListener implements ActionListener{
-
+	private class CirclePathRadioButtonListener implements MouseListener{
 		@Override
-		public void actionPerformed(ActionEvent action) {
+		public void mouseClicked(MouseEvent arg0) {
 			linkedController.changePathSelectionTo(AvailablePath.circle);
-			
 		}
+
+		public void mouseEntered(MouseEvent arg0) {}
+		public void mouseExited(MouseEvent arg0) {}
+		public void mousePressed(MouseEvent arg0) {}
+		public void mouseReleased(MouseEvent arg0) {}
 		
 	}
 	
-	private class SpiralPathRadioButtonListener implements ActionListener{
-
+	private class SpiralPathRadioButtonListener implements MouseListener{
 		@Override
-		public void actionPerformed(ActionEvent arg0) {
+		public void mouseClicked(MouseEvent arg0) {
 			linkedController.changePathSelectionTo(AvailablePath.spiral);
 		}
+
+		public void mouseEntered(MouseEvent arg0) {}
+		public void mouseExited(MouseEvent arg0) {}
+		public void mousePressed(MouseEvent arg0) {}
+		public void mouseReleased(MouseEvent arg0) {}
 		
 	}
 	
-	private class LemniscatePathRadioButtonListener implements ActionListener{
-
+	private class LemniscatePathRadioButtonListener implements MouseListener{
 		@Override
-		public void actionPerformed(ActionEvent arg0) {
+		public void mouseClicked(MouseEvent arg0) {
 			linkedController.changePathSelectionTo(AvailablePath.lemniscate);
 		}
-		
+
+		public void mouseEntered(MouseEvent arg0) {}
+		public void mouseExited(MouseEvent arg0) {}
+		public void mousePressed(MouseEvent arg0) {}
+		public void mouseReleased(MouseEvent arg0) {}
 	}
 	
 	private class PathAndShapeDisplayListener implements MouseListener {
@@ -279,7 +314,8 @@ public class View extends JFrame{
 		@Override
 		public void mouseClicked(MouseEvent event) {
 			if(linkedModel.getShape().contains(new Point((int)event.getPoint().getX(), (int)(event.getPoint().getY())))) { 
-				linkedController.changeColor();
+				System.out.println("click is contained within the shape");
+				linkedController.changeColor();	
 			}
 		}
 

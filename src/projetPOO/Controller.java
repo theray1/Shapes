@@ -51,6 +51,7 @@ public class Controller {
 			}
 			
 		});
+
 	}
 	
 	/**
@@ -74,15 +75,14 @@ public class Controller {
 	 * @param newShape the new shape used by the model, amongst the shapes in AvailableShapes
 	 */
 	public void changeShapeSelectionTo(AvailableShape newShape) {// PLEASE NOTE : this only works because for each loops always iterate over enums in the same order
-		int i = 0;
-		for(AvailableShape sh : AvailableShape.values()) {
-			if(sh.equals(newShape)) {
-				linkedModel.setIndexOfSelectedShape(i);
-			}
-		i++;
+		
+		if(newShape == AvailableShape.circle) {
+			linkedModel.setShape(new Circle(50, new Point(0,0)));
 		}
 		
-		linkedModel.setShape(linkedModel.getListOfShapes().get(linkedModel.getIndexOfSelectedShape()));
+		if(newShape == AvailableShape.square) {
+			linkedModel.setShape(new Square(50, new Point(0,0)));
+		}
 		
 		linkedModel.getShape().moveTo(linkedModel.getPath().nextPoint());
 		
@@ -94,15 +94,18 @@ public class Controller {
 	 * @param newPath the new shape used by the model, amongst the shapes in AvailablePaths
 	 */
 	public void changePathSelectionTo(AvailablePath newPath) {// PLEASE NOTE : this only works because for each loops always iterate over enums in the same order
-		int i = 0;
-		for(AvailablePath pa : AvailablePath.values()) {
-			if(pa.equals(newPath)) {
-				linkedModel.setIndexOfSelectedPath(i);
-			}
-		i++;
+		
+		if(newPath == AvailablePath.circle) {
+			linkedModel.setPath(new CirclePath(200, new Point(800, 500)));
 		}
 		
-		linkedModel.setPath(linkedModel.getListOfPaths().get(linkedModel.getIndexOfSelectedPath()));
+		if(newPath == AvailablePath.spiral) {
+			linkedModel.setPath(new SpiralPath(new Point(800, 500), 4));
+		}
+		
+		if(newPath == AvailablePath.lemniscate) {
+			linkedModel.setPath(new LemniscatePath(new Point(400, 450), new Point(800, 450)));
+		}
 		
 		linkedModel.getShape().moveTo(linkedModel.getPath().nextPoint());
 		
