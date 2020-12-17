@@ -62,6 +62,31 @@ public class Model {
 		updateIterator ++;
 	}
 	
+	public static Shape shapeFactory(AvailableShape newShape) {
+		switch(newShape) {
+		  case circle:
+			  return new Circle(50, new Point(0,0));
+		  case square:
+			  return new Square(50, new Point(0,0));
+		  default:
+			  return null;
+		}
+	}
+	
+	public static Path pathFactory(AvailablePath newPath) {
+		switch(newPath) {
+		  case circle:
+			  return new CirclePath(200, new Point(800, 500));
+		  case spiral:
+			  return new SpiralPath(new Point(800, 500), 4);
+		  case lemniscate:
+			  return new LemniscatePath(new Point(400, 450), new Point(800, 450));
+		  default:
+		    return null;
+		}
+
+	}
+	
 	/**
 	 * adds an amount of units of speed
 	 * @param addedSpeed the amount of speed units added

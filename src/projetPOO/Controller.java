@@ -74,38 +74,22 @@ public class Controller {
 	 * changes the current shape to a new one, and clears the canvas
 	 * @param newShape the new shape used by the model, amongst the shapes in AvailableShapes
 	 */
-	public void changeShapeSelectionTo(AvailableShape newShape) {// PLEASE NOTE : this only works because for each loops always iterate over enums in the same order
+	public void changeShapeSelectionTo(AvailableShape newShape) {
 		
-		if(newShape == AvailableShape.circle) {
-			linkedModel.setShape(new Circle(50, new Point(0,0)));
-		}
-		
-		if(newShape == AvailableShape.square) {
-			linkedModel.setShape(new Square(50, new Point(0,0)));
-		}
+		linkedModel.setShape(Model.shapeFactory(newShape));
 		
 		linkedModel.getShape().moveTo(linkedModel.getPath().nextPoint());
 		
 		linkedView.getLinkedDrawingPanel().resetCanvas();
 	}
-
+	
 	/**
 	 * changes the current path to a new one, and clears the canvas
 	 * @param newPath the new shape used by the model, amongst the shapes in AvailablePaths
 	 */
-	public void changePathSelectionTo(AvailablePath newPath) {// PLEASE NOTE : this only works because for each loops always iterate over enums in the same order
+	public void changePathSelectionTo(AvailablePath newPath) {
 		
-		if(newPath == AvailablePath.circle) {
-			linkedModel.setPath(new CirclePath(200, new Point(800, 500)));
-		}
-		
-		if(newPath == AvailablePath.spiral) {
-			linkedModel.setPath(new SpiralPath(new Point(800, 500), 4));
-		}
-		
-		if(newPath == AvailablePath.lemniscate) {
-			linkedModel.setPath(new LemniscatePath(new Point(400, 450), new Point(800, 450)));
-		}
+		linkedModel.setPath(Model.pathFactory(newPath));
 		
 		linkedModel.getShape().moveTo(linkedModel.getPath().nextPoint());
 		

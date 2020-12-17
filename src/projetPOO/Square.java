@@ -119,7 +119,7 @@ public class Square implements Shape{
 	public void draw(Graphics graphics) {
 		Graphics2D g2d = (Graphics2D) graphics;
 		
-		g2d.rotate(Math.toRadians(rotation), topLeftCorner.x + length/2, topLeftCorner.y + length/2);
+		g2d.rotate(Math.toRadians(rotation * Math.PI/12.0), topLeftCorner.x + length/2, topLeftCorner.y + length/2);
 		
 		graphics.drawRect((int) topLeftCorner.x, (int) topLeftCorner.y, (int) length, (int) length);
 	}
@@ -139,7 +139,7 @@ public class Square implements Shape{
 	 */
 	@Override
 	public int getRotation() {
-		return (int) rotation;
+		return rotation;
 	}
 	
 	/**
@@ -157,7 +157,7 @@ public class Square implements Shape{
 	 */
 	@Override
 	public boolean contains(Point point) {
-		return Math.max(Math.abs((point.x - (topLeftCorner.x + length/2)) * Math.cos(rotation)), Math.abs((point.y - (topLeftCorner.y + length/2)) * Math.cos(rotation))) <= length / 2;
+		return Math.max(Math.abs(point.x - (topLeftCorner.x + length/2)), Math.abs(point.y - (topLeftCorner.y + length/2))) < length / 2;
 	}
 
 	/**

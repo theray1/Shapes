@@ -314,7 +314,6 @@ public class View extends JFrame{
 		@Override
 		public void mouseClicked(MouseEvent event) {
 			if(linkedModel.getShape().contains(new Point((int)event.getPoint().getX(), (int)(event.getPoint().getY())))) { 
-				System.out.println("click is contained within the shape");
 				linkedController.changeColor();	
 			}
 		}
