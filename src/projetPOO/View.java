@@ -39,7 +39,7 @@ public class View extends JFrame{
 		setPreferredSize(new Dimension(w, h));//Set les dimensions de la fenetre de l'application 
 		buildContentPane(); //Créer le contenu de la fenetre de l'application
 		//setLocationRelativeTo(null); //set la position de la fenetre au milieu de l'écran
-		setResizable(true); //la taille ne peut pas être modifiée
+		setResizable(false); //la taille ne peut pas être modifiée
 		pack(); // dimensionnement des composants (?);
 	}
 	

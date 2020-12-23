@@ -17,7 +17,7 @@ public class Controller {
 	 */
 	private View linkedView;
 	/**
-	 * the model which this controller is gonna upate
+	 * the model which this controller is updating
 	 */
 	private Model linkedModel;
 

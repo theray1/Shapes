@@ -29,7 +29,7 @@ public class Main{
 			
 		});
 		
-		//Thread.sleep(200); //in case of weird fuckery happening at the start of the application, please uncomment this line, it might fix it
+		//Thread.sleep(200); //in case of weird things happening at the start of the application, please uncomment this line, it might fix it
 		
 		SwingUtilities.invokeLater(new Runnable() {
 

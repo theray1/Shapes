@@ -38,7 +38,7 @@ public class SpiralPath implements Path{
 	}	
 
 	/**
-	 * gives the next position of the shape and saves that position by incrementing the position variable
+	 * returns the next position of the shape and saves that position by incrementing the rotation and distanceToCenter variable
 	 * @return the next point on the path, which is used as a reference to draw a shape
 	 */
 	@Override

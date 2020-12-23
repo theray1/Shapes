@@ -61,7 +61,11 @@ public class Model {
 		
 		updateIterator ++;
 	}
-	
+	/**
+	 * 
+	 * @param newShape the name of the new shape
+	 * @return an instance of the new shape
+	 */
 	public static Shape shapeFactory(AvailableShape newShape) {
 		switch(newShape) {
 		  case circle:
@@ -72,7 +76,11 @@ public class Model {
 			  return null;
 		}
 	}
-	
+	/**
+	 * 
+	 * @param newPath the name of the new path
+	 * @return an instance of the new path
+	 */
 	public static Path pathFactory(AvailablePath newPath) {
 		switch(newPath) {
 		  case circle:

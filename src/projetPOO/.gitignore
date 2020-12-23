@@ -32,3 +32,15 @@
 /View$StopTimeButtonListener.class
 /View.class
 /SettingsPanel.class
+/SettingsPanel$CirclePathRadioButtonListener.class
+/SettingsPanel$CircleShapeRadioButtonListener.class
+/SettingsPanel$ColorButtonListener.class
+/SettingsPanel$FasterButtonListener.class
+/SettingsPanel$KeyBoardListener.class
+/SettingsPanel$LemniscatePathRadioButtonListener.class
+/SettingsPanel$QuitButtonListener.class
+/SettingsPanel$ResetButtonListener.class
+/SettingsPanel$SlowerButtonListener.class
+/SettingsPanel$SpiralPathRadioButtonListener.class
+/SettingsPanel$SquareShapeRadioButtonListener.class
+/SettingsPanel$StopTimeButtonListener.class
