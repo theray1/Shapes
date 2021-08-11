@@ -128,7 +128,7 @@ public class View extends JFrame{
 		colorButton.addMouseListener(new ColorButtonListener());
 		buttonsGroup.add(colorButton);
 		
-		JButton stopTimeButton = new JButton("『ZA WARDUO』");
+		JButton stopTimeButton = new JButton("『ZA WARUDO』");
 		stopTimeButton.setFocusable(false);
 		stopTimeButton.addMouseListener(new StopTimeButtonListener());
 		buttonsGroup.add(stopTimeButton);	

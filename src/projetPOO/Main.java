@@ -35,7 +35,7 @@ public class Main{
 
 			@Override
 			public void run() {
-				//Créer la classe tickController, qui s'occupe d'éxecuter la programme en boucle
+				//Créer la classe tickController, qui s'occupe d'éxecuter le programme en boucle
 				TickController tickController = new TickController(controller);
 				Timer timer = new Timer();
 				timer.scheduleAtFixedRate(tickController, 16, 16);
