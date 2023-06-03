@@ -1,4 +1,4 @@
-# POO
+# Shapes
 <p>Object Oriented Programming project for university</p>
 <p>This application allows you to display shapes moving along paths</p>
 <p>Change speed : + / -</p>
